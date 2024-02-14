@@ -4,7 +4,7 @@ Feature: StartGame
 @acceptance 
 Scenario Outline: Start the game
     Using the default character, start the game and make sure the map is created and the character is placed on it. If my game has a random starting position, I'll need to have a GIVEN that allows me to use a FakeGame that lets me pass a stubbed starting position.
-
+    Given A player wants to create a new game
     When the game is started
     Then the Game has <numPositions> positions
     And the Game sets the character's X position to <startingPositionX>
