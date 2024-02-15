@@ -77,9 +77,24 @@ namespace LevelUpGame.Test.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Move in a direction")]
         [NUnit.Framework.CategoryAttribute("acceptance")]
-        [NUnit.Framework.TestCaseAttribute("0", "0", "NORTH", "10", "0", "1", "11", null)]
-        [NUnit.Framework.TestCaseAttribute("0", "0", "SOUTH", "32", "0", "0", "33", null)]
-        public void MoveInADirection(string startingPositionX, string startingPositionY, string direction, string startingMoveCount, string endingPositionX, string endingPositionY, string endingMoveCount, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("BottomRightDown", "9", "0", "SOUTH", "84", "9", "0", "85", null)]
+        [NUnit.Framework.TestCaseAttribute("BottomRightRight", "9", "0", "EAST", "67", "9", "0", "68", null)]
+        [NUnit.Framework.TestCaseAttribute("TopRightUp", "9", "9", "NORTH", "29", "9", "9", "30", null)]
+        [NUnit.Framework.TestCaseAttribute("TopRightRight", "9", "9", "EAST", "98", "9", "9", "99", null)]
+        [NUnit.Framework.TestCaseAttribute("TopLeftTop", "0", "9", "NORTH", "62", "0", "9", "63", null)]
+        [NUnit.Framework.TestCaseAttribute("TopLeftLeft", "0", "9", "WEST", "31", "0", "9", "32", null)]
+        [NUnit.Framework.TestCaseAttribute("BottomLeftLeft", "0", "0", "WEST", "36", "0", "0", "37", null)]
+        [NUnit.Framework.TestCaseAttribute("BottomLeftDown", "0", "0", "SOUTH", "75", "0", "0", "76", null)]
+        [NUnit.Framework.TestCaseAttribute("BottomWall", "5", "0", "SOUTH", "71", "5", "0", "72", null)]
+        [NUnit.Framework.TestCaseAttribute("LeftWall", "0", "5", "WEST", "66", "0", "5", "67", null)]
+        [NUnit.Framework.TestCaseAttribute("RightWall", "9", "5", "EAST", "38", "9", "5", "39", null)]
+        [NUnit.Framework.TestCaseAttribute("TopWall", "5", "9", "NORTH", "10", "5", "9", "11", null)]
+        [NUnit.Framework.TestCaseAttribute("Marge", "3", "4", "NORTH", "57", "3", "5", "58", null)]
+        [NUnit.Framework.TestCaseAttribute("Bart", "5", "7", "WEST", "93", "6", "7", "94", null)]
+        [NUnit.Framework.TestCaseAttribute("Lisa", "7", "2", "EAST", "2", "7", "3", "3", null)]
+        [NUnit.Framework.TestCaseAttribute("Homer", "6", "8", "SOUTH", "36", "6", "7", "37", null)]
+        [NUnit.Framework.TestCaseAttribute("George Jetson", "4", "3", "NORTH", "6", "4", "4", "7", null)]
+        public void MoveInADirection(string characterName, string startingPositionX, string startingPositionY, string direction, string startingMoveCount, string endingPositionX, string endingPositionY, string endingMoveCount, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "acceptance"};
@@ -89,6 +104,7 @@ namespace LevelUpGame.Test.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("CharacterName", characterName);
             argumentsOfScenario.Add("startingPositionX", startingPositionX);
             argumentsOfScenario.Add("startingPositionY", startingPositionY);
             argumentsOfScenario.Add("direction", direction);
@@ -108,10 +124,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given(string.Format("the character starts at position with XCoordinates {0}", startingPositionX), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given(string.Format("the character {0} starts at position with X-coordinates {1}", characterName, startingPositionX), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-    testRunner.And(string.Format("starts at YCoordinates {0}", startingPositionY), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And(string.Format("starts at Y-coordinates {0}", startingPositionY), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
     testRunner.And(string.Format("the player chooses to move in {0}", direction), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -123,10 +139,10 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.When("the character moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
-    testRunner.Then(string.Format("the character is now at position with XCoordinates {0}", endingPositionX), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then(string.Format("the character is now at position with X-coordinates {0}", endingPositionX), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
-    testRunner.And(string.Format("YCoordinates  {0}", endingPositionY), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And(string.Format("Y-coordinates {0}", endingPositionY), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
     testRunner.And(string.Format("the new move count is {0}", endingMoveCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

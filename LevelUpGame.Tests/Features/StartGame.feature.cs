@@ -102,6 +102,9 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+    testRunner.Given("A player wants to create a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
     testRunner.When("the game is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
