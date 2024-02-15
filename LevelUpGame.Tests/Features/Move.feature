@@ -3,7 +3,6 @@ Feature: Move
 
 @acceptance
 Scenario Outline: Move in a direction
-    Simple example of how to test move
 
     Given the character <CharacterName> starts at position with X-coordinates <startingPositionX>
     And starts at Y-coordinates <startingPositionY>

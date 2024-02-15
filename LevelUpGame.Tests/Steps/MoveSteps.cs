@@ -15,13 +15,13 @@ namespace DotNetExample.Tests.Steps
         GameController.DIRECTION direction;
         Point currentPosition;
 
-        [Given(@"the character starts at position with XCoordinates (.*)")]
-        public void givenTheCharacterStartsAtX(int startX)
+        [Given(@"the character (.*) starts at position with X-coordinates (.*)")]
+        public void givenTheCharacterStartsAtX(string charName, int startX)
         {
             this.startX = startX;
         }
 
-        [Given(@"starts at YCoordinates (.*)")]
+        [Given(@"starts at Y-coordinates (.*)")]
         public void givenTheCharacterStartsAtY(int startY)
         {
             this.startY = startY;
@@ -47,14 +47,14 @@ namespace DotNetExample.Tests.Steps
             this.currentPosition = status.currentPosition;
         }
 
-        [Then(@"the character is now at position with XCoordinates (.*)")]
+        [Then(@"the character is now at position with X-coordinates (.*)")]
         public void checkXCoordinates(int endX)
         {
             Assert.NotNull(this.currentPosition, "Expected position not null" );
             Assert.AreEqual(endX, this.currentPosition.X);
         }
 
-        [Then(@"YCoordinates  (.*)")]
+        [Then(@"Y-coordinates (.*)")]
         public void checkYCoordinates(int endY)
         {
             Assert.NotNull(this.currentPosition, "Expected position not null");

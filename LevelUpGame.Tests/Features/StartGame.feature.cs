@@ -74,10 +74,10 @@ namespace LevelUpGame.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Start the game")]
+        [NUnit.Framework.DescriptionAttribute(@"Using the default character, start the game and make sure the map is created and the character is placed on it. If my game has a random starting position, I'll need to have a GIVEN that allows me to use a FakeGame that lets me pass a stubbed starting position.")]
         [NUnit.Framework.CategoryAttribute("acceptance")]
         [NUnit.Framework.TestCaseAttribute("100", "0", "0", "0", null)]
-        public void StartTheGame(string numPositions, string startingPositionX, string startingPositionY, string startingMoveCount, string[] exampleTags)
+        public void UsingTheDefaultCharacterStartTheGameAndMakeSureTheMapIsCreatedAndTheCharacterIsPlacedOnIt_IfMyGameHasARandomStartingPositionIllNeedToHaveAGIVENThatAllowsMeToUseAFakeGameThatLetsMePassAStubbedStartingPosition_(string numPositions, string startingPositionX, string startingPositionY, string startingMoveCount, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "acceptance"};
@@ -91,7 +91,7 @@ namespace LevelUpGame.Test.Features
             argumentsOfScenario.Add("startingPositionX", startingPositionX);
             argumentsOfScenario.Add("startingPositionY", startingPositionY);
             argumentsOfScenario.Add("startingMoveCount", startingMoveCount);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Start the game", @"    Using the default character, start the game and make sure the map is created and the character is placed on it. If my game has a random starting position, I'll need to have a GIVEN that allows me to use a FakeGame that lets me pass a stubbed starting position.", tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo(@"Using the default character, start the game and make sure the map is created and the character is placed on it. If my game has a random starting position, I'll need to have a GIVEN that allows me to use a FakeGame that lets me pass a stubbed starting position.", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,21 +103,18 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("A player wants to create a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
     testRunner.When("the game is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
     testRunner.Then(string.Format("the Game has {0} positions", numPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 9
     testRunner.And(string.Format("the Game sets the character\'s X position to {0}", startingPositionX), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
     testRunner.And(string.Format("the Game sets the character\'s Y position to {0}", startingPositionY), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
     testRunner.And(string.Format("the move count is {0}", startingMoveCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
