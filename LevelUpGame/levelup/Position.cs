@@ -14,7 +14,7 @@ namespace levelup
         }
          public bool isValid(){
             
-            if((this.x >=0 || this.x <=9) && (this.y>=0 || this.y<= 9)){
+            if((this.x >=0 && this.x <=9) && (this.y>=0 && this.y<= 9)){
                 
                 return true;
             }
