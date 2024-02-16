@@ -5,31 +5,25 @@ using System.Drawing;
 
 namespace levelup
 {
-    [TestFixture]
-    public class GameStatusTest
-    {
-        private GameStatus? testObj;
+	[TestFixture]
+	public class GameStatusTest
+	{
+		private GameStatus testObj;
 
-        [SetUp]
-        public void SetUp()
-        {
-            testObj = new GameStatus();
-            
-            
-           
+		[SetUp]
+		public void SetUp() {
+			testObj = new GameStatus();
+		}
 
-        }
+		[Test]
+		[TestCase("5", "2", "Mike", 200)]
+		public void IsPrintingCorrectStatus(int positionX, int positionY, string characterName, int moveCount) {
 
-        [Test]
-        public void IsPrintingCorrectStatus()
-        {
-#pragma warning disable CS8602 // Rethrow to preserve stack details
-            testObj.SetGameStatusValues("Mike",5,2);
-            GameStatus.moveCount = 200;
-            Assert.IsNotNull(testObj.toString());
-             
-        }
-
-    
-    }
+			testObj.CurrentPosition = new Position(positionX, positionY);
+			testObj.CurrentCharacter = new Character(characterName);
+			testObj.MoveCount = moveCount;
+			Assert.IsTrue(testObj.ToString().Contains(characterName));
+			Assert.IsTrue(testObj.ToString().Contains(moveCount.ToString()));
+		}
+	}
 }

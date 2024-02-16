@@ -1,90 +1,59 @@
 using System.Drawing;
+using LevelUpGame.levelup.Enumerations;
 
 namespace levelup
 {
-    public class GameController
-    {
-        public readonly string DEFAULT_CHARACTER_NAME = "Character";
+	public class GameController
+	{
+		public GameMap Map { get; set; }
 
-        public GameMap Map { get; set; }
+		public GameStatus Status { get; set; }
 
-        public record struct GameStatus(
-            // TODO: Add other status data
-            String characterName,
-            Position currentPosition,
-            int moveCount
-        );
+		public GameController() {
 
-        // TODO: Ensure this AND CLI commands match domain model
-        public enum DIRECTION
-        {
-            NORTH, SOUTH, EAST, WEST
-        }
+			this.Status = new GameStatus {
+				CurrentCharacter = new Character(),
+				CurrentPosition = new Position(-1, -1),
+				StartPosition = new Position(0, 0),
+				MoveCount = -100
+			};
 
-        GameStatus status = new GameStatus();
+			Map = new GameMap();
+		}
 
-        public GameController()
-        {
-            status.characterName = DEFAULT_CHARACTER_NAME;
-            //Set current position to a nonsense place until you figure out who should initialize
-            status.currentPosition = new Position(-1, -1);
-            //TODO: Write a failing unit test that will force you to set this to the right number
-            status.moveCount = -100;
+		public void CreateCharacter(string name) {
+			this.Status.CurrentCharacter = new Character(name);
+		}
 
-            Map = new GameMap();
-        }
+		public void StartGame() {
+			CreateCharacter(this.Status.CurrentCharacter.Name);
+			SetCharacterPosition(this.Status.StartPosition);
+		}
 
-        // Pre-implemented to demonstrate ATDD
-        // TODO: Update this if it does not match your design
-        public void CreateCharacter(String name)
-        {
-            if (name != null && !name.Equals(""))
-            {
-                this.status.characterName = name;
-            }
-            else
-            {
-                this.status.characterName = DEFAULT_CHARACTER_NAME;
-            }
-        }
+		public GameStatus GetStatus() {
+			return this.Status;
+		}
 
-        public void StartGame()
-        {
-            CreateCharacter(status.characterName);
-            SetCharacterPosition(Map.StartPosition);
-            // TODO: Implement startGame - Should probably create positions and put the character on one
-            // TODO: Should also update the game status?
-        }
+		public void Move(MoveDirections directionToMove) {
 
-        public GameStatus GetStatus()
-        {
-            return this.status;
-        }
+			// calculate new position
+			Position newPosition = Map.CalculateNewPosition(Status.CurrentPosition, directionToMove);
 
-        public void Move(DIRECTION directionToMove)
-        {
-            //TODO: Implement move - should call something on another class
-            //TODO: Should probably also update the game status
-            Map.CalculatePosition(status.currentPosition, directionToMove);
-            status.moveCount++;
-            SetCurrentMoveCount(status.moveCount);
-            SetCharacterPosition(status.currentPosition);
-        }
+			// now update the status
+			SetCurrentMoveCount(Status.MoveCount++);
+			SetCharacterPosition(newPosition);
+		}
 
-        public void SetCharacterPosition(Position newPosition)
-        {
-            //TODO: IMPLEMENT THIS TO SET CHARACTERS CURRENT POSITION -- exists to be testable
-            status.currentPosition = newPosition;
-        }
+		public void SetCharacterPosition(Position newPosition) {
+			Status.CurrentPosition = newPosition;
+		}
 
-        public void SetCurrentMoveCount(int moveCount)
-        {
-            status.moveCount = moveCount;
-        }
+		public void SetCurrentMoveCount(int moveCount) {
+			Status.MoveCount = moveCount;
+		}
 
-        public int GetTotalPositions()
-        {
-            return Map.Positions.Count();
-        }
-    }
+		public int GetTotalPositions() {
+			return Map.Positions.Count();
+		}
+	}
 }
