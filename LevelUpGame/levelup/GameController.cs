@@ -28,6 +28,7 @@ namespace levelup
 		public void StartGame() {
 			CreateCharacter(this.Status.CurrentCharacter.Name);
 			SetCharacterPosition(this.Status.StartPosition);
+			SetCurrentMoveCount(0);
 		}
 
 		public GameStatus GetStatus() {
@@ -40,7 +41,7 @@ namespace levelup
 			Position newPosition = Map.CalculateNewPosition(Status.CurrentPosition, directionToMove);
 
 			// now update the status
-			SetCurrentMoveCount(Status.MoveCount++);
+			SetCurrentMoveCount(++Status.MoveCount);
 			SetCharacterPosition(newPosition);
 		}
 
