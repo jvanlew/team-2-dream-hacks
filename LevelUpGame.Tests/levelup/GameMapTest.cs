@@ -25,7 +25,7 @@ namespace levelup
         {
 #pragma warning disable CS8602 // Rethrow to preserve stack details
             
-            Assert.IsTrue(testObj.IsValid());
+            Assert.IsTrue(testObj.IsValid(new Position(0,0)));
              
         }
 
