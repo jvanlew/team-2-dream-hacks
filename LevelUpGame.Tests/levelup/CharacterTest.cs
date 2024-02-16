@@ -18,9 +18,7 @@ namespace levelup
         [Test]
         public void IsDefaultNameNull()
         {
-#pragma warning disable CS8602 // Rethrow to preserve stack details
-            Assert.IsNotNull(testObj.getName());
-             
+            Assert.IsNotNull(testObj.Name);           
         }
     }
 }
