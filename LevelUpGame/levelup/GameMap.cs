@@ -8,6 +8,8 @@ namespace levelup
 
 		public Position StartPosition { get; set; }
 
+		private Position _currentPos; 
+
 		public GameMap()
 		{
 			this.Positions = new List<Position>();
@@ -33,28 +35,33 @@ namespace levelup
 
 		public void CalculatePosition(Position currentPosition, GameController.DIRECTION direction)
 		{
-			Position newPosition = currentPosition;
+			var newPosition = new Position {
+				PositionX = currentPosition.PositionX,
+				PositionY = currentPosition.PositionY
+			};
+
 			switch (direction)
 			{
 				case GameController.DIRECTION.NORTH:
-				newPosition.PositionY++;
+					newPosition.PositionY++;
 					break;
 
 				case GameController.DIRECTION.EAST:
-				newPosition.PositionX++;
+					newPosition.PositionX++;
 					break;
 
 				case GameController.DIRECTION.SOUTH:
-				newPosition.PositionY--;
+					newPosition.PositionY--;
 					break;
 
 				case GameController.DIRECTION.WEST:
-				newPosition.PositionX--;
+					newPosition.PositionX--;
 					break;
 			}
 
-			if (!IsValidPosition(newPosition)) {
-				newPosition = currentPosition;
+			if (IsValidPosition(newPosition))
+			{
+				currentPosition = newPosition;
 			}
 		}
 	}

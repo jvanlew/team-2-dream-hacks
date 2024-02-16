@@ -66,7 +66,9 @@ namespace levelup
             //TODO: Implement move - should call something on another class
             //TODO: Should probably also update the game status
             Map.CalculatePosition(status.currentPosition, directionToMove);
-            SetCurrentMoveCount(status.moveCount++);
+            status.moveCount++;
+            SetCurrentMoveCount(status.moveCount);
+            SetCharacterPosition(status.currentPosition);
         }
 
         public void SetCharacterPosition(Position newPosition)
@@ -82,10 +84,7 @@ namespace levelup
 
         public int GetTotalPositions()
         {
-            //TODO: IMPLEMENT THIS TO GET THE TOTAL POSITIONS FROM THE MAP -- exists to be testable
-            return -10;
+            return Map.Positions.Count();
         }
-
-
     }
 }
