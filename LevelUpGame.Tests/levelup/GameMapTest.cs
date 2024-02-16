@@ -69,8 +69,35 @@ namespace levelup
 		public void CheckFourthCorner() {
 			testObj?.StartPosition.SetPosition(9, 9);
 			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
-
 		}
-    
+
+		[Test]
+		public void Calculate_Position_Should_Move_North_Successfully() {
+			testObj?.StartPosition.SetPosition(5,5);
+			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.NORTH);
+			Assert.AreEqual(6, testObj?.StartPosition.PositionY);
+		}
+ 
+ 		[Test]
+		public void Calculate_Position_Should_Move_East_Successfully() {
+			testObj?.StartPosition.SetPosition(5,5);
+			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.EAST);
+			Assert.AreEqual(6, testObj?.StartPosition.PositionX);
+		}
+
+ 		[Test]
+		public void Calculate_Position_Should_Move_South_Successfully() {
+			testObj?.StartPosition.SetPosition(5,5);
+			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.SOUTH);
+			Assert.AreEqual(4, testObj?.StartPosition.PositionY);
+		}
+
+ 		[Test]
+		public void Calculate_Position_Should_Move_West_Successfully() {
+			testObj?.StartPosition.SetPosition(5,5);
+			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.WEST);
+			Assert.AreEqual(4, testObj?.StartPosition.PositionX);
+		}
+
     }
 }

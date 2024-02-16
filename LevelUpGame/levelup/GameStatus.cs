@@ -21,8 +21,7 @@ namespace levelup
 
         public String toString()
         {
-            return "Hello "+ characterName + " you are at position "+ X +"," + Y + " and your total move count is " + moveCount;
+            return $"Hello {characterName}! You are at position {X},{Y} and your total move count is {moveCount}";
         }
-
     }
 }

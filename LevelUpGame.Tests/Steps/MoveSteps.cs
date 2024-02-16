@@ -13,7 +13,7 @@ namespace DotNetExample.Tests.Steps
         GameController testObj = new GameController();
         int startX, startY;
         GameController.DIRECTION direction;
-        Point currentPosition;
+        Position currentPosition;
 
         [Given(@"the character (.*) starts at position with X-coordinates (.*)")]
         public void givenTheCharacterStartsAtX(string charName, int startX)
@@ -51,14 +51,14 @@ namespace DotNetExample.Tests.Steps
         public void checkXCoordinates(int endX)
         {
             Assert.NotNull(this.currentPosition, "Expected position not null" );
-            Assert.AreEqual(endX, this.currentPosition.X);
+            Assert.AreEqual(endX, this.currentPosition.PositionX);
         }
 
         [Then(@"Y-coordinates (.*)")]
         public void checkYCoordinates(int endY)
         {
             Assert.NotNull(this.currentPosition, "Expected position not null");
-            Assert.AreEqual(endY, this.currentPosition.Y);
+            Assert.AreEqual(endY, this.currentPosition.PositionY);
         }
 
         [Then(@"the new move count is (.*)")]

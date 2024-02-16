@@ -6,10 +6,12 @@ namespace levelup
     {
         public readonly string DEFAULT_CHARACTER_NAME = "Character";
 
+        public GameMap Map { get; set; }
+
         public record struct GameStatus(
             // TODO: Add other status data
             String characterName,
-            Point currentPosition,
+            Position currentPosition,
             int moveCount
             );
 
@@ -25,7 +27,7 @@ namespace levelup
         {
             status.characterName = DEFAULT_CHARACTER_NAME;
             //Set current position to a nonsense place until you figure out who should initialize
-            status.currentPosition = new Point(-1,-1);
+            status.currentPosition = new Position(-1, -1);
             //TODO: Write a failing unit test that will force you to set this to the right number
             status.moveCount = -100;
         }
@@ -57,6 +59,7 @@ namespace levelup
 
         public void Move(DIRECTION directionToMove)
         {
+            Map.CalculatePosition(status.currentPosition, directionToMove);
             //TODO: Implement move - should call something on another class
             //TODO: Should probably also update the game status
         }
