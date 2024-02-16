@@ -13,7 +13,7 @@ namespace levelup
             String characterName,
             Position currentPosition,
             int moveCount
-            );
+        );
 
         // TODO: Ensure this AND CLI commands match domain model
         public enum DIRECTION
@@ -30,6 +30,8 @@ namespace levelup
             status.currentPosition = new Position(-1, -1);
             //TODO: Write a failing unit test that will force you to set this to the right number
             status.moveCount = -100;
+
+            Map = new GameMap();
         }
 
         // Pre-implemented to demonstrate ATDD
@@ -48,6 +50,8 @@ namespace levelup
 
         public void StartGame()
         {
+            CreateCharacter(status.characterName);
+            SetCharacterPosition(Map.StartPosition);
             // TODO: Implement startGame - Should probably create positions and put the character on one
             // TODO: Should also update the game status?
         }
@@ -59,19 +63,21 @@ namespace levelup
 
         public void Move(DIRECTION directionToMove)
         {
-            Map.CalculatePosition(status.currentPosition, directionToMove);
             //TODO: Implement move - should call something on another class
             //TODO: Should probably also update the game status
+            Map.CalculatePosition(status.currentPosition, directionToMove);
+            SetCurrentMoveCount(status.moveCount++);
         }
 
-        public void SetCharacterPosition(Point coordinates)
+        public void SetCharacterPosition(Position newPosition)
         {
             //TODO: IMPLEMENT THIS TO SET CHARACTERS CURRENT POSITION -- exists to be testable
+            status.currentPosition = newPosition;
         }
 
         public void SetCurrentMoveCount(int moveCount)
         {
-            //TODO: IMPLEMENT THIS TO SET CURRENT MOVE COUNT -- exists to be testable
+            status.moveCount = moveCount;
         }
 
         public int GetTotalPositions()

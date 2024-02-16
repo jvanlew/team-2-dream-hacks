@@ -20,6 +20,7 @@ namespace levelup
 				}
 			}
 
+			// future iteration could set character to random position
 			this.StartPosition = new Position(0, 0);
 		}
 
