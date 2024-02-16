@@ -26,7 +26,8 @@ test-acceptance: build
 # May need export for M1 Mac Architecture
 	- export DOTNET_ROOT=$(which dotnet) & livingdoc test-assembly LevelUpGame.Tests/bin/Debug/net6.0/LevelUpGame.Tests.dll -t LevelUpGame.Tests/bin/Debug/net6.0/TestExecution.json -o test-results/TestOutput.html
 
-test-all: test test-acceptance
+test-all: 
+	test test-acceptance
 
 run:
 	dotnet run --project LevelUpGame
