@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using FluentAssertions;
 using levelup;
+using LevelUpGame.levelup.Enumerations;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -12,7 +13,7 @@ namespace DotNetExample.Tests.Steps
     {
         GameController testObj = new GameController();
         int startX, startY;
-        GameController.DIRECTION direction;
+        MoveDirections direction;
         Position currentPosition;
 
         [Given(@"the character (.*) starts at position with X-coordinates (.*)")]
@@ -29,7 +30,7 @@ namespace DotNetExample.Tests.Steps
 
         [Given(@"the player chooses to move in (.*)")]
         public void givenPlayerChoosesDirection(String direction) {
-            this.direction = (GameController.DIRECTION) Enum.Parse(typeof(GameController.DIRECTION) , direction);
+            this.direction = (MoveDirections) Enum.Parse(typeof(MoveDirections) , direction);
         }
 
         [Given(@"the current move count is (.*)")]
@@ -43,8 +44,8 @@ namespace DotNetExample.Tests.Steps
         {
             testObj.SetCharacterPosition(new Position(this.startX, this.startY));
             testObj.Move(this.direction);
-            GameController.GameStatus status = testObj.GetStatus();
-            this.currentPosition = status.currentPosition;
+            GameStatus status = testObj.GetStatus();
+            this.currentPosition = status.CurrentPosition;
         }
 
         [Then(@"the character is now at position with X-coordinates (.*)")]
@@ -64,7 +65,7 @@ namespace DotNetExample.Tests.Steps
         [Then(@"the new move count is (.*)")]
         public void checkNewMoveCount(int endingMoveCount)
         {
-            Assert.AreEqual(testObj.GetStatus().moveCount, endingMoveCount);
+            Assert.AreEqual(testObj.GetStatus().MoveCount, endingMoveCount);
         }
     }
 }

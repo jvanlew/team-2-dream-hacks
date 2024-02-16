@@ -1,10 +1,11 @@
+using LevelUpGame.levelup.Enumerations;
 using Sharprompt;
 using System.Collections;
 namespace levelup.cli;
 class Game
 {
     static GameController gameController = new GameController();
-    static List<GameController.GameStatus> gameHistory = new List<GameController.GameStatus>();
+    static List<GameStatus> gameHistory = new List<GameStatus>();
     static Boolean isGameStarted = false;
 
     public enum startingMenuCommands
@@ -108,7 +109,7 @@ class Game
     {
         var characterName = Prompt.Input<string>("What is your character's name?");
         gameController.CreateCharacter(characterName);
-        var gameStatusCharacterName = gameController.GetStatus().characterName;
+        var gameStatusCharacterName = gameController.GetStatus().CurrentCharacter.Name;
         Console.WriteLine($"Your character, {gameStatusCharacterName}, is created!");
     }
     static void StartGame()
@@ -121,23 +122,23 @@ class Game
     }
     static void MoveNorth()
     {
-        gameController.Move(GameController.DIRECTION.NORTH);
+        gameController.Move(MoveDirections.North);
         updateStatus(gameController.GetStatus());
     }
     static void MoveSouth()
     {
-        gameController.Move(GameController.DIRECTION.SOUTH);
+        gameController.Move(MoveDirections.South);
         updateStatus(gameController.GetStatus());
     }
     static void MoveEast()
     {
-        gameController.Move(GameController.DIRECTION.EAST);
+        gameController.Move(MoveDirections.East);
         updateStatus(gameController.GetStatus());
     }
 
     static void MoveWest()
     {
-        gameController.Move(GameController.DIRECTION.WEST);
+        gameController.Move(MoveDirections.West);
         updateStatus(gameController.GetStatus());
     }
 
@@ -156,7 +157,7 @@ class Game
     static void PrintSummary()
     {
         Console.WriteLine("Exiting the mysterious land!");
-        foreach (GameController.GameStatus status in gameHistory)
+        foreach (GameStatus status in gameHistory)
         {
             // TODO: Override toString on game status to print pretty
             Console.WriteLine(status);
@@ -165,7 +166,7 @@ class Game
 
     }
 
-    private static void updateStatus(GameController.GameStatus status)
+    private static void updateStatus(GameStatus status)
     {
         gameHistory.Add(status);
     }

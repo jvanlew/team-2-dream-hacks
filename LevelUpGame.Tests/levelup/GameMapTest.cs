@@ -1,14 +1,11 @@
 using NUnit.Framework;
-using levelup;
-using System;
-using System.Drawing;
 
 namespace levelup
 {
-    [TestFixture]
-    public class GameMapTest
-    {
-		private GameMap? testObj;
+	[TestFixture]
+	public class GameMapTest
+	{
+		private GameMap testObj;
 
 		[SetUp]
 		public void SetUp() {
@@ -16,88 +13,83 @@ namespace levelup
 		}
 
 		[Test]
-		public void IsCorrectPositionValid() {
-			testObj?.StartPosition.SetPosition(1, 2);
-			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
-
+		public void Valid_Position_Should_Be_Valid() {
+			var currPos = new Position(3, 6);
+			Assert.IsTrue(testObj.IsValidPosition(currPos));
 		}
 
 		[Test]
-		public void IsNegativeXFailing() {
-			testObj?.StartPosition.SetPosition(-1, 2);
-			Assert.IsFalse(testObj.IsValidPosition(testObj.StartPosition));
-
-		}
-
-
-		[Test]
-		public void IsNegativeYFailing() {
-			testObj?.StartPosition.SetPosition(1, -2);
-			Assert.IsFalse(testObj.IsValidPosition(testObj.StartPosition));
-
+		public void Negative_X_Positions_Should_Be_Invalid() {
+			var currPos = new Position(-1, 2);
+			Assert.IsFalse(testObj?.IsValidPosition(currPos));
 		}
 
 
 		[Test]
-		public void IsHigherThan9YFailing() {
-			testObj?.StartPosition.SetPosition(2, 10);
-			Assert.IsFalse(testObj.IsValidPosition(testObj.StartPosition));
+		public void Negative_Y_Positions_Should_Be_Invalid() {
+			var currPos = new Position(1, -2);
+			Assert.IsFalse(testObj?.IsValidPosition(currPos));
+		}
+
+
+		[Test]
+		public void Position_Y_Greater_Than_9_Should_Be_Invalid() {
+			var currPos = new Position(2, 10);
+			Assert.IsFalse(testObj?.IsValidPosition(currPos));
 
 		}
 		[Test]
-		public void CheckFirstCorner() {
-			testObj?.StartPosition.SetPosition(0, 0);
-			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
+		public void Lower_Left_Corner_Position_Should_Be_Valid() {
+			var currPos = new Position(0, 0);
+			Assert.IsTrue(testObj.IsValidPosition(currPos));
+		}
+
+		[Test]
+		public void Upper_Left_Corner_Position_Should_Be_Valid() {
+			var currPos = new Position(0, 9);
+			Assert.IsTrue(testObj.IsValidPosition(currPos));
 
 		}
 
 		[Test]
-		public void CheckSecondCorner() {
-			testObj?.StartPosition.SetPosition(0, 9);
-			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
-
+		public void Lower_Right_Corner_Position_Should_Be_Valid() {
+			var currPos = new Position(9, 0);
+			Assert.IsTrue(testObj.IsValidPosition(currPos));
 		}
 
 		[Test]
-		public void CheckThirdCorner() {
-			testObj?.StartPosition.SetPosition(9, 0);
-			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
-
-		}
-
-		[Test]
-		public void CheckFourthCorner() {
-			testObj?.StartPosition.SetPosition(9, 9);
-			Assert.IsTrue(testObj.IsValidPosition(testObj.StartPosition));
+		public void Upper_Right_Corner_Position_Should_Be_Valid() {
+			var currPos = new Position(9, 9);
+			Assert.IsTrue(testObj.IsValidPosition(currPos));
 		}
 
 		[Test]
 		public void Calculate_Position_Should_Move_North_Successfully() {
-			testObj?.StartPosition.SetPosition(5,5);
-			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.NORTH);
-			Assert.AreEqual(6, testObj?.StartPosition.PositionY);
+			var currPos = new Position(5, 5);
+			var newPos = testObj.CalculateNewPosition(currPos, LevelUpGame.levelup.Enumerations.MoveDirections.North);
+			Assert.AreEqual(++currPos.PositionY, newPos.PositionY);
 		}
- 
- 		[Test]
+
+		[Test]
 		public void Calculate_Position_Should_Move_East_Successfully() {
-			testObj?.StartPosition.SetPosition(5,5);
-			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.EAST);
-			Assert.AreEqual(6, testObj?.StartPosition.PositionX);
+			var currPos = new Position(5, 5);
+			var newPos = testObj.CalculateNewPosition(currPos, LevelUpGame.levelup.Enumerations.MoveDirections.East);
+			Assert.AreEqual(++currPos.PositionX, newPos.PositionX);
 		}
 
- 		[Test]
+		[Test]
 		public void Calculate_Position_Should_Move_South_Successfully() {
-			testObj?.StartPosition.SetPosition(5,5);
-			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.SOUTH);
-			Assert.AreEqual(4, testObj?.StartPosition.PositionY);
+			var currPos = new Position(5, 5);
+			var newPos = testObj.CalculateNewPosition(currPos, LevelUpGame.levelup.Enumerations.MoveDirections.South);
+			Assert.AreEqual(--currPos.PositionY, newPos.PositionY);
 		}
 
- 		[Test]
+		[Test]
 		public void Calculate_Position_Should_Move_West_Successfully() {
-			testObj?.StartPosition.SetPosition(5,5);
-			testObj?.CalculatePosition(testObj?.StartPosition, GameController.DIRECTION.WEST);
-			Assert.AreEqual(4, testObj?.StartPosition.PositionX);
+			var currPos = new Position(5, 5);
+			var newPos = testObj.CalculateNewPosition(currPos, LevelUpGame.levelup.Enumerations.MoveDirections.West);
+			Assert.AreEqual(--currPos.PositionX, newPos.PositionX);
 		}
 
-    }
+	}
 }

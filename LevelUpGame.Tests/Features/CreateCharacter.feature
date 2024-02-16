@@ -10,8 +10,7 @@ Scenario Outline: Set character name
     When the character is created
     Then the Game sets the character name to <characterNameOutput>
     Examples:
-
         | characterNameInput | characterNameOutput |
         | Erin               | Erin                |
         | Special!2%         | Special!2%          |
-        |                    | Character           |
+        |                    | Default Character   |

@@ -35,8 +35,8 @@ namespace LevelUpGame.Test.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateCharacter", "![Gamer](./gamerErin.png)\n    I want to create a new custom character, setting th" +
-                    "eir name", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateCharacter", "![Gamer](./gamerErin.png)\r\n    I want to create a new custom character, setting t" +
+                    "heir name", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,7 +79,7 @@ namespace LevelUpGame.Test.Features
         [NUnit.Framework.CategoryAttribute("acceptance")]
         [NUnit.Framework.TestCaseAttribute("Erin", "Erin", null)]
         [NUnit.Framework.TestCaseAttribute("Special!2%", "Special!2%", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Character", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Default Character", null)]
         public void SetCharacterName(string characterNameInput, string characterNameOutput, string[] exampleTags)
         {
             string[] @__tags = new string[] {
