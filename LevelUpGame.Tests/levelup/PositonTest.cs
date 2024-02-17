@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using levelup;
+using LevelUpGame.Library.Entities;
 using System;
 using System.Drawing;
 
-namespace levelup
+namespace LevelUpGame.Tests
 {
     [TestFixture]
     public class PositionTest

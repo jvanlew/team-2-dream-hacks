@@ -1,13 +1,12 @@
+using LevelUpGame.Library.Entities;
 using NUnit.Framework;
-using levelup;
-using System;
 
-namespace levelup
+namespace LevelUpGame.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class CharacterTest
     {
-        private Character? testObj;
+        private Character testObj;
 
         [SetUp]
         public void SetUp()
@@ -18,7 +17,7 @@ namespace levelup
         [Test]
         public void IsDefaultNameNull()
         {
-            Assert.IsNotNull(testObj.Name);           
+            Assert.That(testObj.Name, Is.Not.Null);
         }
     }
 }

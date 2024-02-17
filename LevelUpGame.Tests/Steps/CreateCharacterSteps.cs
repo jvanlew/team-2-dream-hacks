@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using levelup;
+using LevelUpGame.Library.Entities;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

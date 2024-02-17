@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using levelup;
+using LevelUpGame.Library.Entities;
 using System;
 using System.Drawing;
 
-namespace levelup
+namespace LevelUpGame.Tests
 {
 	[TestFixture]
 	public class GameStatusTest
@@ -22,8 +22,8 @@ namespace levelup
 			testObj.CurrentPosition = new Position(positionX, positionY);
 			testObj.CurrentCharacter = new Character(characterName);
 			testObj.MoveCount = moveCount;
-			Assert.IsTrue(testObj.ToString().Contains(characterName));
-			Assert.IsTrue(testObj.ToString().Contains(moveCount.ToString()));
+			Assert.That(testObj.ToString().Contains(characterName));
+			Assert.That(testObj.ToString().Contains(moveCount.ToString()));
 		}
 	}
 }

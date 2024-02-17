@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sharprompt" Version="2.4.1" />
+    <PackageReference Include="Sharprompt" Version="2.4.5" />
   </ItemGroup>
 
 </Project>

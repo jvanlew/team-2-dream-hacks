@@ -1,24 +1,21 @@
 using NUnit.Framework;
-using levelup;
+using LevelUpGame.Library.Entities;
 
-namespace levelup
+namespace LevelUpGame.Tests
 {
-    [TestFixture]
-    public class GameControllerTest
-    {
-        private GameController? testObj;
+	[TestFixture]
+	public class GameControllerTest
+	{
+		private GameController? testObj;
 
-        [SetUp]
-        public void SetUp()
-        {
-            testObj = new GameController();
-        }
+		[SetUp]
+		public void SetUp() {
+			testObj = new GameController();
+		}
 
-        [Test]
-        public void IsGameResultInitialized()
-        {
-#pragma warning disable CS8602 // Rethrow to preserve stack details
-            Assert.IsNotNull(testObj.GetStatus());
-        }
-    }
+		[Test]
+		public void IsGameResultInitialized() {
+			Assert.That(testObj.GetStatus(), Is.Not.Null);
+		}
+	}
 }
